@@ -4,9 +4,10 @@ import ReactDOM from "react-dom";
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { items: [], text: '' };
+    this.state = { items: [], filteredItems: [], text: '', search: ''};
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.updateSearch = this.updateSearch.bind(this);
   }
 
   render() {
@@ -27,12 +28,37 @@ class App extends React.Component {
             Add #{this.state.items.length + 1}
           </button>
         </form>
+        <form>
+          <label htmlFor="search item">
+            Search for
+          </label>
+          <input 
+          id="search item"
+          value={this.state.search}
+          onChange={this.updateSearch}
+          />
+        </form>
+        <ShoppingList items={this.state.filteredItems} />
       </div>
     );
   }
 
   handleChange(e) {
     this.setState({ text: e.target.value });
+  }
+
+  updateSearch(e) {
+    this.setState({ search: e.target.value });
+
+    if (this.state.search.length === 0) {
+      this.state.filteredItems = [];
+      return;
+    }
+    this.state.filteredItems = this.state.items.filter(
+      (item) => {
+        return item.text.indexOf(this.state.search) !== -1;
+      }  
+    );
   }
 
   handleSubmit(e) {
@@ -49,6 +75,7 @@ class App extends React.Component {
       text: ''
     }));
   }
+
 }
 
 class ShoppingList extends React.Component {
