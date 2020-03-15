@@ -16,16 +16,17 @@ test("renders without crashing", () => {
 
 test("input works", () => {
   const wrapper = shallow(<App />);
-  wrapper.find("input").at(0).simulate("onChange", { target: { id: 'new item', value: "oranges" } } );
+  wrapper.find("input").at(0).simulate("onChange", { target: { id: 'new_item', value: "oranges" } } );
   wrapper.find("button").at(0).simulate("click");
-  wrapper.find("ShoppingList").at(0).contains("oranges");
+  wrapper.update();
+  expect(wrapper.find("ShoppingList").at(0).contains("oranges")).toBeTruthy();
 });
 
 test("search works", () => {
   const wrapper = shallow(<App />);
-  wrapper.find("input").at(0).simulate("onChange", { target: { id: 'new item', value: "oranges" } } );
+  wrapper.find("input").at(0).simulate("onChange", { target: { id: 'new_item', value: "oranges" } } );
   wrapper.find("button").at(0).simulate("click");
   wrapper.find("ShoppingList").at(0).contains("oranges");
-  wrapper.find("input").at(1).simulate("onChange", { target: { id: 'search item', value: "or" } } );
-  wrapper.find("ShoppingList").at(1).contains("oranges");
+  wrapper.find("input").at(1).simulate("onChange", { target: { id: 'search_item', value: "or" } } );
+  expect(wrapper.find("ShoppingList").at(1).contains("oranges")).toBeTruthy();
 });

@@ -16,11 +16,11 @@ class App extends React.Component {
         <h3>Shopping List</h3>
         <ShoppingList items={this.state.items} />
         <form onSubmit={this.handleSubmit}>
-          <label htmlFor="new item">
+          <label htmlFor="new_item">
             What do you need to buy?
           </label>
           <input
-            id="new item"
+            id="new_item"
             onChange={this.handleChange}
             value={this.state.text}
           />
@@ -29,11 +29,11 @@ class App extends React.Component {
           </button>
         </form>
         <form>
-          <label htmlFor="search item">
+          <label htmlFor="search_item">
             Search for
           </label>
           <input 
-          id="search item"
+          id="search_item"
           value={this.state.search}
           onChange={this.updateSearch}
           />
