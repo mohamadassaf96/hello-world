@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { render } from '@testing-library/react';
 import App from './App';
 import ReactTestUtils from 'react-dom/test-utils';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import Enzyme from 'enzyme';
 import Simulate from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
@@ -15,18 +15,19 @@ test("renders without crashing", () => {
 });
 
 test("input works", () => {
-  const wrapper = shallow(<App />);
-  wrapper.find("input").at(0).simulate("onChange", { target: { id: 'new_item', value: "oranges" } } );
-  wrapper.find("button").at(0).simulate("click");
-  wrapper.update();
-  expect(wrapper.find("ShoppingList").at(0).contains("oranges")).toBeTruthy();
+  const wrapper = mount(<App />);
+  wrapper.find("input").at(0).simulate("change", { target: {value: "oranges"} });
+  wrapper.find("button").simulate("submit");
+  (expect(wrapper.find("ShoppingList").at(0).contains("oranges"))).toBeTruthy();
 });
 
 test("search works", () => {
-  const wrapper = shallow(<App />);
-  wrapper.find("input").at(0).simulate("onChange", { target: { id: 'new_item', value: "oranges" } } );
-  wrapper.find("button").at(0).simulate("click");
-  wrapper.find("ShoppingList").at(0).contains("oranges");
-  wrapper.find("input").at(1).simulate("onChange", { target: { id: 'search_item', value: "or" } } );
-  expect(wrapper.find("ShoppingList").at(1).contains("oranges")).toBeTruthy();
+  const wrapper = mount(<App />);
+  wrapper.find("input").at(0).simulate("change", { target: {value: "oranges"} } );
+  wrapper.find("button").simulate("submit");
+  wrapper.find("input").at(0).simulate("change", { target: {value: "apples"} } );
+  wrapper.find("button").simulate("submit");
+  expect(wrapper.find("ShoppingList").contains("oranges")).toBeTruthy();
+  wrapper.find("input").at(1).simulate("change", { target: {value: "or"} } );
+  expect(wrapper.find("ShoppingList").contains("oranges")).toBeTruthy();
 });

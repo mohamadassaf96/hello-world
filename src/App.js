@@ -14,7 +14,6 @@ class App extends React.Component {
     return (
       <div>
         <h3>Shopping List</h3>
-        <ShoppingList items={this.state.items} />
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="new_item">
             What do you need to buy?
@@ -48,17 +47,14 @@ class App extends React.Component {
   }
 
   updateSearch(e) {
-    this.setState({ search: e.target.value });
-
-    if (this.state.search.length === 0) {
-      this.state.filteredItems = [];
-      return;
-    }
-    this.state.filteredItems = this.state.items.filter(
+    let dummy = [];
+    dummy = e.target.value.length === 0 ? this.state.items : this.state.items.filter(
       (item) => {
-        return item.text.indexOf(this.state.search) !== -1;
+        return item.text.indexOf(e.target.value) !== -1;
       }  
     );
+    this.setState({ search: e.target.value });
+    this.setState({ filteredItems: dummy});
   }
 
   handleSubmit(e) {
@@ -72,6 +68,7 @@ class App extends React.Component {
     };
     this.setState(state => ({
       items: state.items.concat(newItem),
+      filteredItems: state.items.concat(newItem),
       text: ''
     }));
   }
