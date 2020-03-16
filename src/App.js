@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import './App.css';
 
 class App extends React.Component {
   constructor(props) {
@@ -12,7 +13,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="container">
         <h3>Shopping List</h3>
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="new_item">
@@ -27,7 +28,7 @@ class App extends React.Component {
             Add #{this.state.items.length + 1}
           </button>
         </form>
-        <form>
+        <form className="search-form">
           <label htmlFor="search_item">
             Search for
           </label>
@@ -47,14 +48,13 @@ class App extends React.Component {
   }
 
   updateSearch(e) {
-    let dummy = [];
-    dummy = e.target.value.length === 0 ? this.state.items : this.state.items.filter(
+    let tempFilteredItems = e.target.value.length === 0 ? this.state.items : this.state.items.filter(
       (item) => {
         return item.text.indexOf(e.target.value) !== -1;
       }  
     );
     this.setState({ search: e.target.value });
-    this.setState({ filteredItems: dummy});
+    this.setState({ filteredItems: tempFilteredItems});
   }
 
   handleSubmit(e) {
@@ -78,7 +78,7 @@ class App extends React.Component {
 class ShoppingList extends React.Component {
   render() {
     return (
-      <ul>
+      <ul className="container">
         {this.props.items.map(item => (
           <li key={item.id}>{item.text}</li>
         ))}

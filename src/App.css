@@ -2,6 +2,38 @@
   text-align: center;
 }
 
+body {
+  background-color: lightblue;
+}
+
+div{
+  margin-top: 100px;
+  text-align: center;
+}
+
+.search-form 
+{
+  padding-top: 20px;
+}
+
+input 
+{
+  margin-left: 20px;
+}
+
+button
+{
+  margin-left: 20px;
+}
+
+.container ul {
+  margin-top: 50px;
+  list-style-type: none;
+}
+.container ul li {
+  height: 30px;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
