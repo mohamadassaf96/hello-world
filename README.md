@@ -1,11 +1,18 @@
 # Shopping List Management
 ## Description
-ReactJS web application. User inputs a list of shopping items, and can interactively search through them.
+My first ReactJS web application. User inputs a list of shopping items, and can interactively filter them. The app has a user guided tour feature and unit testing.
 ## How to run
-* clone this repository
+* Clone this repository
+* Install dependencies
+```
+yarn add reactour
+```
+```
+yarn add styled-components@^4.0.0
+```
 * Run 
 ```
-npm start
+yarn start
 ```
 * View interface on
 ```

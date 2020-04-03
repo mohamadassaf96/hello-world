@@ -7,9 +7,13 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "coverage": "^0.4.1",
+    "openui5-tour": "0.0.19",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
-    "react-scripts": "3.4.0"
+    "react-scripts": "3.4.0",
+    "react-tour": "0.0.2",
+    "reactour": "^1.16.3",
+    "styled-components": "^5.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
