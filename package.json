@@ -10,7 +10,7 @@
     "openui5-tour": "0.0.19",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
-    "react-scripts": "3.4.0",
+    "react-scripts": "5.0.1",
     "react-tour": "0.0.2",
     "reactour": "^1.16.3",
     "styled-components": "^5.0.1"
